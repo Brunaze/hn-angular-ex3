@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ListeTransactionsComponent } from './liste-transactions/liste-transactions.component';
 import { CommonModule } from '@angular/common';
 import { HeureComponent } from './heure/heure.component';
-import { interval, map, Observable, share, shareReplay, Subscription, timer } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -16,22 +15,22 @@ import { interval, map, Observable, share, shareReplay, Subscription, timer } fr
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent{
-  time = new Date();
-  rxTime = new Date();
-  subscription: Subscription | undefined;
-  
-  ngOnInit() {
+export class AppComponent implements OnInit, OnDestroy {
+  currentTime: Date = new Date();
+  private intervalId: any;
 
-    // Using RxJS Timer
-    this.subscription = timer(0, 1000)
-      .pipe(
-        map(() => new Date()),
-        share()
-      )
-      .subscribe(time => {
-        this.rxTime = time;
-      });
+  ngOnInit() {
+    // Met à jour l'heure toutes les secondes
+    this.intervalId = setInterval(() => {
+      this.currentTime = new Date();
+    }, 1000);
+  }
+
+  ngOnDestroy() {
+    // Nettoie l'intervalle quand le composant est détruit
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
   }
 
 }
