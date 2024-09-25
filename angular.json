@@ -27,7 +27,6 @@
               }
             ],
             "styles": [
-              "node_modules/bootstrap/css/bootstrap.css",
               "src/styles.css"
             ],
             "scripts": [],

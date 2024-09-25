@@ -15,22 +15,22 @@ import { HeureComponent } from './heure/heure.component';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit, OnDestroy {
-  currentTime: Date = new Date();
-  private intervalId: any;
+export class AppComponent {
+  // currentTime: Date = new Date();
+  // private intervalId: any;
 
-  ngOnInit() {
-    // Met à jour l'heure toutes les secondes
-    this.intervalId = setInterval(() => {
-      this.currentTime = new Date();
-    }, 1000);
-  }
+  // ngOnInit() {
+  //   // Met à jour l'heure toutes les secondes
+  //   this.intervalId = setInterval(() => {
+  //     this.currentTime = new Date();
+  //   }, 1000);
+  // }
 
-  ngOnDestroy() {
-    // Nettoie l'intervalle quand le composant est détruit
-    if (this.intervalId) {
-      clearInterval(this.intervalId);
-    }
-  }
+  // ngOnDestroy() {
+  //   // Nettoie l'intervalle quand le composant est détruit
+  //   if (this.intervalId) {
+  //     clearInterval(this.intervalId);
+  //   }
+  // }
 
 }
